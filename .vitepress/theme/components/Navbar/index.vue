@@ -11,7 +11,9 @@
           </li>
         </ul>
       </span>
-      <SearchButton />
+      <span class="hamburger">
+        <SearchButton />
+      </span>
     </nav>
   </header>
 
@@ -100,6 +102,61 @@ header {
           }
         }
       }
+    }
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 36px;
+    cursor: pointer;
+  }
+
+  .hamburger .line {
+    display: block;
+    width: 80%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: var(--font-color-grey);
+    margin-bottom: 4px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .hamburger.active .line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active .line:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active .line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    nav {
+      height: 64px;
+    }
+    .logo {
+      img {
+        height: 32px;
+      }
+    }
+    .menu {
+      ul {
+        li {
+          margin: 0 10px;
+          a {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+    .hamburger {
+      width: 32px;
     }
   }
 }
