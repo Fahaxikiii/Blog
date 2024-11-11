@@ -6,22 +6,13 @@
       </span>
       <span class="menu">
         <ul>
-          <li v-for="item in menuList">
+          <li v-for="item in menuList" :key="item.url">
             <a :href="base + item.url">{{ item.name }}</a>
           </li>
         </ul>
       </span>
-      <div
-        class="hamburger"
-        :class="{ active: state.showDropdownMenu }"
-        @click="toggleDropdownMenu"
-      >
-        <span class="line"></span>
-        <span class="line"></span>
-        <span class="line"></span>
-      </div>
+      <SearchButton />
     </nav>
-    <DropdownMenu :showMenu="state.showDropdownMenu"></DropdownMenu>
   </header>
 
   <SearchDialog v-if="state.searchDialog" @close-dialog="closeDialog"></SearchDialog>
@@ -38,13 +29,10 @@ import { useStore } from '../../store'
 const { state } = useStore()
 
 import SearchDialog from './Search-Dialog.vue'
-import DropdownMenu from './Dropdown-Menu.vue'
+import SearchButton from './Search-Button.vue'
 
 const closeDialog = () => {
   state.searchDialog = false
-}
-const toggleDropdownMenu = () => {
-  state.showDropdownMenu = !state.showDropdownMenu
 }
 </script>
 
@@ -112,61 +100,6 @@ header {
           }
         }
       }
-    }
-  }
-
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 36px;
-    cursor: pointer;
-  }
-
-  .hamburger .line {
-    display: block;
-    width: 80%;
-    height: 4px;
-    border-radius: 4px;
-    background-color: var(--font-color-grey);
-    margin-bottom: 4px;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .hamburger.active .line:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  .hamburger.active .line:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.active .line:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-}
-
-@media (max-width: 768px) {
-  header {
-    nav {
-      height: 64px;
-    }
-    .logo {
-      img {
-        height: 32px;
-      }
-    }
-    .menu {
-      ul {
-        li {
-          margin: 0 10px;
-          a {
-            font-size: 16px;
-          }
-        }
-      }
-    }
-    .hamburger {
-      width: 32px;
     }
   }
 }

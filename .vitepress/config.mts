@@ -65,8 +65,8 @@ export default defineConfigWithTheme<ThemeConfig>({
   // sitemap: {
   //   hostname: 'https://vitepress-theme-bluearchive.vercel.app',
   // },
-  title: "Sensei's 部落格",
-  description: "Sensei's 部落格",
+  title: "十二",
+  description: "万里 の Blog",
   themeConfig: {
     // navBar
     menuList: [
@@ -76,12 +76,12 @@ export default defineConfigWithTheme<ThemeConfig>({
 
     //banner区配置
     videoBanner: false,
-    name: "Sensei's 部落格",
-    welcomeText: 'Hello, VitePress',
+    name: "万里 の Blog",
+    welcomeText: 'Hello, World',
     motto: ['无人识我来时路，就像那孤山起了雾', '孤独な山の霧のように、私がどこに来たのか誰も知らない'],
     social: [
-      { icon: 'github', url: 'https://github.com/' },
-      { icon: 'bilibili', url: 'https://www.bilibili.com/' },
+      { icon: 'github', url: 'https://github.com/Fahaxikiii' },
+      { icon: 'bilibili', url: 'https://space.bilibili.com/362856603' },
       { icon: 'qq', url: 'https://im.qq.com/index/' },
       { icon: 'wechat', url: 'https://weixin.qq.com/' },
     ],
