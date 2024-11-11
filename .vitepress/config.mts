@@ -78,7 +78,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     videoBanner: false,
     name: "Sensei's 部落格",
     welcomeText: 'Hello, VitePress',
-    motto: ['和你的日常，就是奇迹', '何気ない日常で、ほんの少しの奇跡を見つける物語。'],
+    motto: ['无人识我来时路，就像那孤山起了雾', '孤独な山の霧のように、私がどこに来たのか誰も知らない'],
     social: [
       { icon: 'github', url: 'https://github.com/' },
       { icon: 'bilibili', url: 'https://www.bilibili.com/' },
