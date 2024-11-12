@@ -28,7 +28,8 @@ bash <(curl -sSL https://linuxmirrors.cn/docker.sh)
 ```
 
 ## 二、安装NapCat容器
-本文推荐新手使用host模式运行，简单方便，如遇端口冲突直接修改对应端口即可
+本文推荐新手使用host模式运行，简单方便，如遇端口冲突直接修改对应端口即可<br>
+多开webui端口会依次递增，如6099,6100...无需手动修改
 
 ```bash
 docker run -d \
@@ -48,9 +49,9 @@ mlikiowa/napcat-docker:latest
 
 ### 具体含义如下:
 
-容器名称 随意填写，但要注意多开不能重名，否则无法运行  
-机器人qq 顾名思义就是需要登录的机器人的QQ账号，在配置QQ持久化数据路径后可以实现快速登录  
-Mac地址 就是本机的Mac地址，可通过以下指令获取  
+<font color="#00FFFF">容器名称</font> 随意填写，但要注意多开不能重名，否则无法运行<br>
+<font color="#00FFFF">机器人qq</font> 顾名思义就是需要登录的机器人的QQ账号，在配置QQ持久化数据路径后可以实现快速登录<br>
+<font color="#00FFFF">Mac地址</font>  就是本机的Mac地址，可通过以下指令获取
 ```bash
 ip addr show $(ip route | awk '/default/ {print $5}') | grep link/ether | awk '{print $2}'
 ```
@@ -61,9 +62,9 @@ ip addr show $(ip route | awk '/default/ {print $5}') | grep link/ether | awk '{
 -v /opt/napcat/config:/app/napcat/config \
 -v /opt/napcat/logs:/app/napcat/logs \
 ```
-是固化路径，你也可以自定义，注意只能自定义:前面的内容，后面的内容是容器内的路径，禁止修改  
-同时你也可以添加自定义路径，比如你的BOT需要发送本地文件，你就可以通过映射的方式让NapCatQQ能过获取本地文件  
-例如在上面三行后面添加,这里要注意:前后保持一致  
+是固化路径，你也可以自定义，注意只能自定义<font color="#FF0000">:</font>前面的内容，后面的内容是容器内的路径，禁止修改<br>
+同时你也可以添加自定义路径，比如你的BOT需要发送本地文件，你就可以通过映射的方式让NapCatQQ能够获取本地文件<br>
+例如在上面三行后面添加,这里要注意<font color="#FF0000">:</font>前后保持一致  
 ```bash
 -v /root/zhenxun:/root/zhenxun \
 ```
@@ -124,7 +125,7 @@ sudo chmod +x /usr/bin/docker-compose
 ```
 如遇下载失败或其他情况请使用第三方代理(如https://ghp.ci/)或自行去[官方release](https://github.com/docker/compose/releases/latest)下载对应系统的可执行文件并重命名为docker-compose放入/usr/bin/下再执行上面第二条命令
 ## 二、安装NapCat容器
-对于新版docker-compose而言，去掉了version的声明
+对于新版docker-compose而言，去掉了version的声明<br>
 创建一个名为docker-compose.yml的文件并写入以下内容
 ```shell
 services:
@@ -156,7 +157,7 @@ id -g # NAPCAT_GID的值
 ```
 root用户或sudo执行两值均为0
 ## 三、对容器的一些操作
-注意在docker-compose.yml文件同目录下执行  
+注意在docker-compose.yml文件同目录下执行<br>  
 如果没有写入NAPCAT_UID和NAPCAT_GID的值，执行命令时均要在前面加上  
 ```bash
 NAPCAT_UID=$(id -u); NAPCAT_GID=$(id -g); 
@@ -175,3 +176,13 @@ docker-compose stop
 docker-compose up -d
 ```
 其他操作与Dokcer安装相同
+
+### 代理
+如果无法拉去docker镜像可以将命令中的mlikiowa/napcat-docker:latest修改为镜像地址
+如
+```bash
+docker.rainbond.cc/mlikiowa/napcat-docker:latest
+docker.1panel.dev/mlikiowa/napcat-docker:latest
+hub.021212.xyz:8080/mlikiowa/napcat-docker:latest
+```
+有其他的或者自建的也可自行修改代理地址<br>
