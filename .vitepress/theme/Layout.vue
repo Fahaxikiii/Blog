@@ -17,12 +17,6 @@
         ></PostsList>
         <PostViewer v-else></PostViewer>
       </transition>
-      <transition name="fade" mode="out-in">
-        <PostsList
-          v-if="page.filePath === 'link.md' || page.filePath === 'friends/link.md'"
-        ></PostsList>
-        <PostViewer v-else></PostViewer>
-      </transition>
     </main>
     <Footer></Footer>
     <Fireworks v-if="state.fireworksEnabled"></Fireworks>
