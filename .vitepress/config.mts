@@ -72,6 +72,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     menuList: [
       { name: '首页', url: '' },
       { name: '标签', url: 'tags/' },
+      { name: '友链', url: 'friends/link' },
     ],
 
     //banner区配置
