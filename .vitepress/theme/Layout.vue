@@ -1,22 +1,26 @@
 <template>
   <Splash></Splash>
   <template v-if="!page.isNotFound">
-    <main style="min-height: 100vh">
+    <main :class="{ 'friends-page': page.filePath?.includes('friends/') }" style="min-height: 100vh">
       <Navbar></Navbar>
       <Banner>
         <transition name="fade" mode="out-in">
           <WelcomeBox v-if="!state.splashLoading && page.filePath === 'index.md'"></WelcomeBox>
           <Tags v-else-if="page.filePath === 'tags/index.md'"></Tags>
-          <Friends v-else-if="page.filePath === 'friends/link.md'"></Friends>
+          <div class="friends-wrapper" v-else-if="page.filePath?.includes('friends/')">
+            <Content />
+          </div>
           <PostInnerBanner v-else></PostInnerBanner>
         </transition>
       </Banner>
-      <transition name="fade" mode="out-in">
-        <PostsList
-          v-if="page.filePath === 'index.md' || page.filePath === 'tags/index.md'"
-        ></PostsList>
-        <PostViewer v-else></PostViewer>
-      </transition>
+      <div class="content-area" :class="{ 'friends-content': page.filePath?.includes('friends/') }">
+        <transition name="fade" mode="out-in">
+          <PostsList
+            v-if="page.filePath === 'index.md' || page.filePath === 'tags/index.md'"
+          ></PostsList>
+          <PostViewer v-else-if="!page.filePath?.includes('friends/')"></PostViewer>
+        </transition>
+      </div>
     </main>
     <Footer></Footer>
     <Fireworks v-if="state.fireworksEnabled"></Fireworks>
@@ -33,7 +37,6 @@ import Banner from './components/Banner.vue'
 import WelcomeBox from './components/Welcome-Box.vue'
 import PostsList from './components/Posts-List.vue'
 import Tags from './components/Tags.vue'
-import Friends from './components/Friends.vue'
 import PostViewer from './components/Post-Viewer.vue'
 import PostInnerBanner from './components/Post-InnerBanner.vue'
 import NotFound from './components/NotFound.vue'
@@ -98,5 +101,39 @@ a {
   border-radius: 3px;
   background: var(--color-blue);
   cursor: pointer;
+}
+
+.friends-page {
+  position: relative;
+  z-index: 1;
+}
+
+.friends-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 40vh;
+  left: 0;
+  right: 0;
+  z-index: 51;
+  padding-bottom: 2rem;
+}
+
+.content-area {
+  position: relative;
+  z-index: 2;
+  margin-top: 80vh;
+
+  &.friends-content {
+    margin-top: 0;
+    min-height: calc(100vh - 40vh);
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      var(--general-background-color) 20%
+    );
+  }
 }
 </style>
