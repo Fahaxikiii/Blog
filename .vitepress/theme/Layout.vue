@@ -7,9 +7,7 @@
         <transition name="fade" mode="out-in">
           <WelcomeBox v-if="!state.splashLoading && page.filePath === 'index.md'"></WelcomeBox>
           <Tags v-else-if="page.filePath === 'tags/index.md'"></Tags>
-          <div class="friends-wrapper" v-else-if="page.filePath?.includes('friends/')">
-            <Content />
-          </div>
+          <div class="friends-banner" v-else-if="page.filePath?.includes('friends/')"></div>
           <PostInnerBanner v-else></PostInnerBanner>
         </transition>
       </Banner>
@@ -19,6 +17,9 @@
             v-if="page.filePath === 'index.md' || page.filePath === 'tags/index.md'"
           ></PostsList>
           <PostViewer v-else-if="!page.filePath?.includes('friends/')"></PostViewer>
+          <div class="friends-wrapper" v-else>
+            <Content />
+          </div>
         </transition>
       </div>
     </main>
@@ -105,35 +106,31 @@ a {
 
 .friends-page {
   position: relative;
-  z-index: 1;
+  
+  .content-area {
+    position: relative;
+    z-index: 10;
+  }
+}
+
+.friends-banner {
+  height: 40vh;
 }
 
 .friends-wrapper {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 40vh;
-  left: 0;
-  right: 0;
+  padding-top: calc(40vh - 360px);
+  position: relative;
   z-index: 51;
-  padding-bottom: 2rem;
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--general-background-color) 50%
+  );
 }
 
-.content-area {
-  position: relative;
-  z-index: 2;
-  margin-top: 80vh;
-
-  &.friends-content {
-    margin-top: 0;
-    min-height: calc(100vh - 40vh);
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      var(--general-background-color) 20%
-    );
-  }
+.friends-content {
+  margin-top: -40vh;
 }
 </style>

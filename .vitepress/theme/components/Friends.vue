@@ -59,8 +59,8 @@ onMounted(() => {
 
 <style scoped lang="less">
 .friends-container {
-  width: 90%;
-  max-width: 1400px;
+  width: 80%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
@@ -71,7 +71,7 @@ onMounted(() => {
 .friends-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 25px;
   width: 100%;
 }
 
@@ -85,6 +85,7 @@ onMounted(() => {
   cursor: pointer;
   position: relative;
   z-index: 53;
+  min-height: 160px;
 
   &:hover {
     transform: translateY(-5px);
@@ -105,8 +106,8 @@ onMounted(() => {
 
 .friend-avatar {
   flex-shrink: 0;
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, 0.5);
@@ -176,11 +177,19 @@ onMounted(() => {
   .friends-list {
     grid-template-columns: repeat(4, 1fr);
   }
+  
+  .friend-card {
+    min-height: 170px;
+  }
 }
 
 @media (max-width: 1599px) and (min-width: 1200px) {
   .friends-list {
     grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .friend-card {
+    min-height: 160px;
   }
 }
 
@@ -188,11 +197,15 @@ onMounted(() => {
   .friends-list {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .friend-card {
+    min-height: 150px;
+  }
 }
 
 @media (max-width: 767px) {
   .friends-container {
-    width: 95%;
+    width: 90%;
     padding: 15px;
     position: relative;
   }
